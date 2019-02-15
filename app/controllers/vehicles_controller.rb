@@ -6,16 +6,21 @@ class VehiclesController < ApplicationController
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
+    @vehicle = Vehicle.find_by(params[:id])
   end
 
   # GET /vehicles/1
   # GET /vehicles/1.json
   def show
+    @vehicle = Vehicle.find_by(params[:id])
   end
 
   # GET /vehicles/new
   def new
     @vehicle = Vehicle.new
+    @vehicle.parent_categories.build
+    @vehicle.sub_categories.build
+    @vehicle.image_galleries.build
   end
 
   # GET /vehicles/1/edit
@@ -70,6 +75,6 @@ class VehiclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_params
-      params.require(:vehicle).permit(:name, :color, :company_name, :vehicle_image, :parent_category, :sub_category, :image_gallery)
+      params.require(:vehicle).permit(:name, :color, :company_name, :vehicle_image, :parent_category, :sub_category, :image_gallery, :parent_categories_attributes => [:parent_category], :sub_categories_attributes => [:sub_category], :image_galleries_attributes => [:image_gallery])
     end
 end

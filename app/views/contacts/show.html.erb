@@ -14,12 +14,12 @@
   <strong>Email:</strong>
   <%= @contact.email %>
 </p>
+
+<p>
   <strong>Email:</strong>
   <% @contact.phones.each do |hello| %>
     <%= hello.phone_no %>
   <% end %>
-<p>
-
 </p>
 
 <%= link_to 'Edit', edit_contact_path(@contact) %> |

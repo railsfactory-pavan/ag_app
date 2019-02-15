@@ -31,6 +31,27 @@
     <%= form.text_field :vehicle_image %>
   </div>
 
+  <div class="field">
+    <%= form.fields_for :parent_categories do |s| %>
+      <%= s.label :parent_category %>
+      <%= s.text_field :parent_category %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :sub_categories do |s| %>
+      <%= s.label :sub_category %>
+      <%= s.text_field :sub_category %>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= form.fields_for :image_galleries do |s| %>
+      <%= s.label :image_gallery %>
+      <%= s.text_field :image_gallery %>
+    <% end %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

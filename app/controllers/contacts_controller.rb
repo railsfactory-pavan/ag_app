@@ -7,14 +7,12 @@ class ContactsController < ApplicationController
   def index
     @contacts = Contact.all
     @contact = Contact.find_by(params[:id])
-    @contact.phones.build
   end
 
   # GET /contacts/1
   # GET /contacts/1.json
   def show
     @contact = Contact.find_by(params[:id])
-    @contact.phones.build
   end
 
   # GET /contacts/new

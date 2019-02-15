@@ -20,5 +20,26 @@
   <%= @vehicle.vehicle_image %>
 </p>
 
+<p>
+  <strong>Parent Category:</strong>
+  <% @vehicle.parent_categories.each do |hello| %>
+    <%= hello.parent_category %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Sub Category:</strong>
+  <% @vehicle.sub_categories.each do |hello| %>
+    <%= hello.sub_category %>
+  <% end %>
+</p>
+
+<p>
+  <strong>Image Gallery:</strong>
+  <% @vehicle.image_galleries.each do |hello| %>
+    <%= hello.image_gallery %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_vehicle_path(@vehicle) %> |
 <%= link_to 'Back', vehicles_path %>
