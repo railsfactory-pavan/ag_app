@@ -1,3 +1,3 @@
 class SubCategory < ApplicationRecord
-  belongs_to :vehicle
+  belongs_to :vehicle, optional: true
 end
