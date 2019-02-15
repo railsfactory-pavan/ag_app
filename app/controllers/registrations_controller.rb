@@ -1,5 +1,6 @@
 class RegistrationsController < Devise::Registrations Controller
   before_action :authenticate_user!
+  
   private
 
   def sign_up_params
