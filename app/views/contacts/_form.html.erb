@@ -27,8 +27,10 @@
   </div>
 
   <div class="field">
-    <%= form.label :phone_no %>
-    <%= form.text_field :phone_no %>
+    <%= form.fields_for :phones do |s| %>
+      <%= s.label :phone_no %>
+      <%= s.text_field :phone_no %>
+    <% end %>
   </div>
 
   <div class="actions">
