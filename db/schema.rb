@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_100204) do
+ActiveRecord::Schema.define(version: 2019_02_15_103025) do
+
+  create_table "contacts", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contacts_phone_nos", id: false, force: :cascade do |t|
+    t.integer "phone_no_id", null: false
+    t.integer "contact_id", null: false
+    t.string "phone_no"
+    t.index ["contact_id", nil], name: "index_contacts_phone_nos_on_contact_id_and_phone_n_id"
+    t.index [nil, "contact_id"], name: "index_contacts_phone_nos_on_phone_n_id_and_contact_id"
+  end
 
   create_table "image_galleries_vehicles", id: false, force: :cascade do |t|
     t.integer "image_gallery_id", null: false
