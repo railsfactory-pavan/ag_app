@@ -10,7 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_15_080526) do
+ActiveRecord::Schema.define(version: 2019_02_15_100204) do
+
+  create_table "image_galleries_vehicles", id: false, force: :cascade do |t|
+    t.integer "image_gallery_id", null: false
+    t.integer "vehicle_id", null: false
+    t.string "image_gallery"
+    t.index ["vehicle_id", nil], name: "index_image_galleries_vehicles_on_vehicle_id_and_image_g_id"
+    t.index [nil, "vehicle_id"], name: "index_image_galleries_vehicles_on_image_g_id_and_vehicle_id"
+  end
+
+  create_table "parent_categories_vehicles", id: false, force: :cascade do |t|
+    t.integer "parent_category_id", null: false
+    t.integer "vehicle_id", null: false
+    t.string "parent_category"
+    t.index ["vehicle_id", nil], name: "index_parent_categories_vehicles_on_vehicle_id_and_parent_c_id"
+    t.index [nil, "vehicle_id"], name: "index_parent_categories_vehicles_on_parent_c_id_and_vehicle_id"
+  end
+
+  create_table "sub_categories_vehicles", id: false, force: :cascade do |t|
+    t.integer "sub_category_id", null: false
+    t.integer "vehicle_id", null: false
+    t.string "sub_category"
+    t.index ["vehicle_id", nil], name: "index_sub_categories_vehicles_on_vehicle_id_and_sub_c_id"
+    t.index [nil, "vehicle_id"], name: "index_sub_categories_vehicles_on_sub_c_id_and_vehicle_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.boolean "admin"
@@ -23,6 +47,15 @@ ActiveRecord::Schema.define(version: 2019_02_15_080526) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "vehicles", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.string "company_name"
+    t.string "vehicle_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
