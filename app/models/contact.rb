@@ -1,3 +1,3 @@
 class Contact < ApplicationRecord
-  has_many :phone_nos
+  has_many :phones
 end

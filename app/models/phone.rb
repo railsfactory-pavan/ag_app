@@ -1,3 +1,3 @@
 class Phone < ApplicationRecord
-  belongs_to :contact
+  belongs_to :contacts
 end
