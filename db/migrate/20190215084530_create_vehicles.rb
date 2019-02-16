@@ -4,7 +4,6 @@ class CreateVehicles < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :color
       t.string :company_name
-      t.string :vehicle_image
 
       t.timestamps
     end

@@ -8,7 +8,6 @@
       <th>Name</th>
       <th>Color</th>
       <th>Company name</th>
-      <th>Vehicle image</th>
       <th>Parent Categories</th>
       <th>Sub Categories</th>
       <th>Image Galleries</th>
@@ -23,11 +22,6 @@
         <td><%= vehicle.color %></td>
         <td><%= vehicle.company_name %></td>
         <td>
-          <div style="width:100px; height:auto">
-            <%= image_tag(@vehicle.vehicle_image, style: 'width:100%') %>
-          </div>
-        </td>
-        <td>
           <% @vehicle.parent_categories.each do |hello| %>
             <%= hello.parent_category %>
           <% end %>
@@ -39,7 +33,7 @@
         </td>
         <td>
           <% @vehicle.image_galleries.each do |hello| %>
-            <%= hello.image_gallery %>
+            <%= hello.image %>
           <% end %>
         </td>
         <td><%= link_to 'Show', vehicle %></td>

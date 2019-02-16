@@ -1,18 +1,23 @@
 class VehiclesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_vehicle, only: [:show, :edit, :update, :destroy]
+  # , :edit
 
   # GET /vehicles
   # GET /vehicles.json
   def index
     @vehicles = Vehicle.all
     @vehicle = Vehicle.find_by(params[:id])
+
+    # render json: @vehicles
   end
 
   # GET /vehicles/1
   # GET /vehicles/1.json
   def show
     @vehicle = Vehicle.find_by(params[:id])
+
+    # render json: @vehicle
   end
 
   # GET /vehicles/new
@@ -31,14 +36,19 @@ class VehiclesController < ApplicationController
   # POST /vehicles.json
   def create
     @vehicle = Vehicle.new(vehicle_params)
+    @vehicle.parent_categories.build
+    @vehicle.sub_categories.build
+    @vehicle.image_galleries.build
 
     respond_to do |format|
       if @vehicle.save
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully created.' }
         format.json { render :show, status: :created, location: @vehicle }
+        # render json: @vehicle, status: :created, location: api_v1_vehicle_url(@vehicle)
       else
         format.html { render :new }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
+        # render json: @vehicle.errors, status: :unprocessable_entity
       end
     end
   end
@@ -50,9 +60,11 @@ class VehiclesController < ApplicationController
       if @vehicle.update(vehicle_params)
         format.html { redirect_to @vehicle, notice: 'Vehicle was successfully updated.' }
         format.json { render :show, status: :ok, location: @vehicle }
+        # render json: @vehicle
       else
         format.html { render :edit }
         format.json { render json: @vehicle.errors, status: :unprocessable_entity }
+        # render json: @vehicle.errors, status: :unprocessable_entity
       end
     end
   end
@@ -75,6 +87,7 @@ class VehiclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_params
-      params.require(:vehicle).permit(:name, :color, :company_name, :vehicle_image, :parent_category, :sub_category, :image_gallery, :parent_categories_attributes => [:parent_category], :sub_categories_attributes => [:sub_category], :image_galleries_attributes => [:image_gallery])
+      params.require(:vehicle).permit(:name, :color, :company_name, :parent_categories_attributes => [:parent_category], :sub_categories_attributes => [:sub_category], :image_galleries_attributes => [:images])
+      # , :parent_category, :sub_category, :image_gallery
     end
 end

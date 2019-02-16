@@ -1,3 +1,3 @@
 class ParentCategory < ApplicationRecord
-  belongs_to :vehicle, optional: true
+  belongs_to :vehicles, optional: true
 end

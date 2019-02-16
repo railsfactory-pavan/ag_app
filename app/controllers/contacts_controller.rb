@@ -1,18 +1,24 @@
 class ContactsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
+  # , :edit
 
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
     @contact = Contact.find_by(params[:id])
+    @contacts = Contact.all
+
+    # .to_json
+    # render json: @contacts
   end
 
   # GET /contacts/1
   # GET /contacts/1.json
   def show
     @contact = Contact.find_by(params[:id])
+
+    # render json: @contact
   end
 
   # GET /contacts/new
@@ -29,14 +35,19 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
+    @contact.phones.build
 
     respond_to do |format|
       if @contact.save
         format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
         format.json { render :show, status: :created, location: @contact }
+
+        # render json: @contact, status: :created, location: api_v1_contact_url(@contact)
       else
         format.html { render :new }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
+
+        # render json: @contact.errors, status: :unprocessable_entity
       end
     end
   end
@@ -48,9 +59,13 @@ class ContactsController < ApplicationController
       if @contact.update(contact_params)
         format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
         format.json { render :show, status: :ok, location: @contact }
+
+        # render json: @contact
       else
         format.html { render :edit }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
+
+        # render json: @contact.errors, status: :unprocessable_entity
       end
     end
   end
