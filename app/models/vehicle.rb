@@ -8,4 +8,9 @@ class Vehicle < ApplicationRecord
   accepts_nested_attributes_for :image_galleries
 
   has_one_attached :vehicle_image
+
+  attr_accessor :remove_asset
+  after_save do
+    Array(remove_asset).each { |id| vehicle_image.find_by_id(id).try(purge) }
+  end
 end
