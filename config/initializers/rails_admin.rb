@@ -4,6 +4,14 @@ RailsAdmin.config do |config|
     redirect_to main_app.root_path unless current_user.admin?
   end
 
+  config.model 'ImageGallery' do
+    field :image do
+      pretty_value do
+        bindings[:view].tag(:img, { :src => bindings[:object].image.url })
+      end
+    end
+  end
+
   ### Popular gems integration
 
   # ## == Devise ==

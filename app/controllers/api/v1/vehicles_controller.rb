@@ -1,7 +1,6 @@
 class Api::V1::VehiclesController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_vehicle, only: [:show, :update, :destroy]
-  # , :edit
 
   # GET /vehicles
   # GET /vehicles.json
@@ -87,7 +86,6 @@ class Api::V1::VehiclesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def vehicle_params
-      params.require(:vehicle).permit(:name, :color, :company_name, :parent_categories_attributes => [:parent_category], :sub_categories_attributes => [:sub_category], :image_galleries_attributes => [:images])
-      # , :parent_category, :sub_category, :image_gallery
+      params.require(:vehicle).permit(:name, :color, :company_name, :parent_categories_attributes => [:parent_category], :sub_categories_attributes => [:sub_category], :image_galleries_attributes => [:image])
     end
 end

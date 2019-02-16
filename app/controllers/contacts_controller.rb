@@ -29,6 +29,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
+    @contact = Contact.find_by(params[:id])
   end
 
   # POST /contacts
