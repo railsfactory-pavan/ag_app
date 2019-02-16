@@ -16,8 +16,10 @@
 </p>
 
 <p>
+  <div style="width:400px; height:auto">
   <strong>Vehicle image:</strong>
-  <%= @vehicle.vehicle_image %>
+  <%= link_to image_tag(@vehicle.vehicle_image, style: 'width:100%'), vehicles_path %>
+  </div>
 </p>
 
 <p>

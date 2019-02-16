@@ -22,7 +22,11 @@
         <td><%= vehicle.name %></td>
         <td><%= vehicle.color %></td>
         <td><%= vehicle.company_name %></td>
-        <td><%= vehicle.vehicle_image %></td>
+        <td>
+          <div style="width:100px; height:auto">
+            <%= image_tag(@vehicle.vehicle_image, style: 'width:100%') %>
+          </div>
+        </td>
         <td>
           <% @vehicle.parent_categories.each do |hello| %>
             <%= hello.parent_category %>
