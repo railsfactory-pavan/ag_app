@@ -5,12 +5,37 @@ RailsAdmin.config do |config|
   end
 
   config.model 'ImageGallery' do
-    field :image do
-      pretty_value do
-        bindings[:view].tag(:img, { :src => bindings[:object].image.url })
+    list do
+      configure :created_at do
+        hide
+      end
+      configure :updated_at do
+        hide
+      end
+      configure :image do
+        hide
       end
     end
+
+    edit do
+      configure :image do
+        hide
+      end
+    end
+
+    show do
+        field :image
+    end
+    config.compact_show_view = false
   end
+
+  # config.model 'ImageGallery' do
+  #   field :image do
+  #     pretty_value do
+  #       bindings[:view].tag(:img, { :src => bindings[:object].image.url })
+  #     end
+  #   end
+  # end
 
   ### Popular gems integration
 
